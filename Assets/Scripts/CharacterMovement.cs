@@ -18,6 +18,8 @@ public class CharacterMovement : MonoBehaviour
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
+    public int score = 0;
+
     // ============================== Private Variables ==============================
     private Rigidbody rb; // Reference to the Rigidbody component
     private Transform cameraTransform; // Reference to the camera's transform
@@ -44,6 +46,8 @@ public class CharacterMovement : MonoBehaviour
     /// Checks if the player is currently holding the "Run" button.
     /// </summary>
     private bool IsRunning => Input.GetButton("Run");
+
+    public bool CanFlip = false;
 
     // ============================== Unity Built-in Methods ==============================
 

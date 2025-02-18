@@ -23,5 +23,18 @@ public class AnimatorController : MonoBehaviour
     {
         animator.SetFloat("CharacterSpeed", rb.velocity.magnitude);
         animator.SetBool("IsGrounded", characterMovement.IsGrounded);
+
+        if(characterMovement.IsGrounded==false){
+            if(characterMovement.CanFlip)
+            {
+                if(Input.GetButtonDown("Jump")){
+                    animator.SetBool("canFlip", true);
+                }
+            }
+            else
+            {
+                animator.SetBool("canFlip", false); 
+            }
+        }
     }
 }
