@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class FlipPowerUp : MonoBehaviour
 {
+    private float rotateSpeed = 50f;
+    void Update()
+    {
+        transform.Rotate(0,0,rotateSpeed * Time.deltaTime);   
+    }
+
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
             StartCoroutine(Pickup(other));

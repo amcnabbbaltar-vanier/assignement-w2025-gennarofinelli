@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SpeedPowerUp : MonoBehaviour
 {
+    private float rotateSpeed = 50f;
+    void Update()
+    {
+        transform.Rotate(0,rotateSpeed * Time.deltaTime,0);   
+    }
+    
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
             StartCoroutine(Pickup(other));
@@ -15,8 +21,7 @@ public class SpeedPowerUp : MonoBehaviour
 
         player.GetComponent<CharacterMovement>().speedMultiplier *= 2;
 
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+        gameObject.active = false;
 
         yield return new WaitForSeconds(5.0f);
 

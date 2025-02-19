@@ -6,7 +6,13 @@ using TMPro;
 
 public class ScorePowerUp : MonoBehaviour
 {
+    private float rotateSpeed = 50f;
     public TextMeshProUGUI ScoreText;
+    void Update()
+    {
+        transform.Rotate(0,0,rotateSpeed * Time.deltaTime);   
+    }
+
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
             Pickup(other);
@@ -19,7 +25,6 @@ public class ScorePowerUp : MonoBehaviour
         player.GetComponent<CharacterMovement>().score += 50;
         ScoreText.text = "SCORE: " + player.GetComponent<CharacterMovement>().score.ToString();
 
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+        gameObject.active = false;
     }
 }
