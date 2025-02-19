@@ -15,6 +15,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
 
+    private float jumpStatus = 0f;
+
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
@@ -161,10 +163,17 @@ public class CharacterMovement : MonoBehaviour
     private void HandleJump()
     {
         // Apply jump force only if jump was requested and the character is grounded
-        if (jumpRequest && IsGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply force upwards
-            jumpRequest = false; // Reset jump request after applying jump
+        if(jumpRequest){
+            if(IsGrounded){
+                rb.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+                jumpRequest = false;
+                jumpStatus = 0f;
+            }
+            else if (CanFlip && jumpStatus == 0f){
+                rb.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+                jumpRequest = false;
+                jumpStatus = 1f;
+            }
         }
     }
 

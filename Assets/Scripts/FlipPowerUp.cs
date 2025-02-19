@@ -15,8 +15,7 @@ public class FlipPowerUp : MonoBehaviour
 
         player.GetComponent<CharacterMovement>().CanFlip = true;
 
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+        gameObject.active = false;
 
         yield return new WaitForSeconds(30.0f);
 
