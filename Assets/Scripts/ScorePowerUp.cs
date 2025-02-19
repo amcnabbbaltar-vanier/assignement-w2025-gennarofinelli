@@ -10,7 +10,7 @@ public class ScorePowerUp : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     void Update()
     {
-        transform.Rotate(0,0,rotateSpeed * Time.deltaTime);   
+        transform.Rotate(0,rotateSpeed * Time.deltaTime, 0);   
     }
 
     void OnTriggerEnter(Collider other){
