@@ -5,9 +5,18 @@ using UnityEngine;
 public class FlipPowerUp : MonoBehaviour
 {
     private float rotateSpeed = 50f;
+    public float height = 2.5f;
+    private Vector3 startPos;
+
+    void Start(){
+        startPos = transform.position;
+    }
+
     void Update()
     {
-        transform.Rotate(0,0,rotateSpeed * Time.deltaTime);   
+        transform.Rotate(0,0,rotateSpeed * Time.deltaTime);
+        float newY = Mathf.Sin(Time.time * 5) * height;
+        transform.position = new Vector3(startPos.x, startPos.y + newY, startPos.z);
     }
 
     void OnTriggerEnter(Collider other){

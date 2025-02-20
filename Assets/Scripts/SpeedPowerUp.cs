@@ -5,9 +5,16 @@ using UnityEngine;
 public class SpeedPowerUp : MonoBehaviour
 {
     private float rotateSpeed = 50f;
+    private Vector3 startPos;
+    
+    void Start(){
+        startPos = transform.position;
+    }
     void Update()
     {
-        transform.Rotate(0,rotateSpeed * Time.deltaTime,0);   
+        transform.Rotate(0,rotateSpeed * Time.deltaTime,0);
+        float newY = Mathf.Sin(Time.time * 5) * 0.25f;
+        transform.position = new Vector3(startPos.x, startPos.y + newY, startPos.z); 
     }
     
     void OnTriggerEnter(Collider other){
