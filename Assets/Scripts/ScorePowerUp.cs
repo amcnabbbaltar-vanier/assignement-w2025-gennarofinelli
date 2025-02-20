@@ -30,8 +30,13 @@ public class ScorePowerUp : MonoBehaviour
     void Pickup(Collider player){
         Debug.Log("Power up has been picked up.");
 
-        player.GetComponent<CharacterMovement>().score += 50;
-        ScoreText.text = "SCORE: " + player.GetComponent<CharacterMovement>().score.ToString();
+        int score = PlayerPrefs.GetInt("score", 0);
+
+        score+=50;
+
+        PlayerPrefs.SetInt("score", score);
+        PlayerPrefs.Save(); 
+        ScoreText.text = "SCORE: " + score.ToString();
 
         gameObject.active = false;
     }

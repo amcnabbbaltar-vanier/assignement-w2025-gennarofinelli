@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))] // Ensures that a Rigidbody component is attached to the GameObject
 public class CharacterMovement : MonoBehaviour
@@ -21,6 +22,8 @@ public class CharacterMovement : MonoBehaviour
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
     public int score = 0;
+
+    public int health = 3;
 
     // ============================== Private Variables ==============================
     private Rigidbody rb; // Reference to the Rigidbody component
@@ -66,6 +69,9 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if(health == 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         RegisterInput(); // Collect player input
     }
 
