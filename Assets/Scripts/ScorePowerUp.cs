@@ -38,6 +38,6 @@ public class ScorePowerUp : MonoBehaviour
         PlayerPrefs.Save(); 
         ScoreText.text = "SCORE: " + score.ToString();
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 }

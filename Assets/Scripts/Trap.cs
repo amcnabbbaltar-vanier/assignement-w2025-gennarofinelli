@@ -6,12 +6,13 @@ using TMPro;
 
 public class Trap : MonoBehaviour
 {
-    public TextMeshProUGUI HealthText;
+    private CharacterHealth health;
 
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
+            health = other.GetComponent<CharacterHealth>();
+            health.TakeDamage(1);
             other.GetComponent<CharacterMovement>().health -= 1;
-            HealthText.text = "HEALTH: " + other.GetComponent<CharacterMovement>().health.ToString();
         }
     }
 }

@@ -11,9 +11,9 @@ public class AnimatorController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
-         rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
-    public void LateUpdate()
+    public void Update()
     {
        UpdateAnimator();
     }
@@ -26,9 +26,10 @@ public class AnimatorController : MonoBehaviour
 
         if(characterMovement.CanFlip)
         {
-            if(Input.GetButtonDown("Jump")){
-                animator.SetBool("canFlip", true);
-            }
+            animator.SetBool("canFlip", true);
+        }
+        else {
+            animator.SetBool("canFlip", false);
         }
     }
 }

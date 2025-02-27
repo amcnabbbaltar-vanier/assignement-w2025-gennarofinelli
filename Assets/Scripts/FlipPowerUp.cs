@@ -5,17 +5,20 @@ using UnityEngine;
 public class FlipPowerUp : MonoBehaviour
 {
     private float rotateSpeed = 50f;
-    public float height = 2.5f;
     private Vector3 startPos;
+    private MeshRenderer mesh;
+    private Collider collider;
 
     void Start(){
         startPos = transform.position;
+        mesh = GetComponent<MeshRenderer>();
+        collider = GetComponent<Collider>();
     }
 
     void Update()
     {
         transform.Rotate(0,0,rotateSpeed * Time.deltaTime);
-        float newY = Mathf.Sin(Time.time * 5) * height;
+        float newY = Mathf.Sin(Time.time * 5) * 0.25f;
         transform.position = new Vector3(startPos.x, startPos.y + newY, startPos.z);
     }
 
@@ -30,10 +33,12 @@ public class FlipPowerUp : MonoBehaviour
 
         player.GetComponent<CharacterMovement>().CanFlip = true;
 
-        gameObject.active = false;
+        mesh.enabled = false;
+        collider.enabled = false;
 
         yield return new WaitForSeconds(30.0f);
 
+        Debug.Log("Flip off!");
         player.GetComponent<CharacterMovement>().CanFlip = false;
     }
 }
