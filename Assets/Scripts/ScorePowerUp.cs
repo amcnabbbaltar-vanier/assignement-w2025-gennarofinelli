@@ -9,9 +9,10 @@ public class ScorePowerUp : MonoBehaviour
     private float rotateSpeed = 50f;
     public TextMeshProUGUI ScoreText;
     private Vector3 startPos;
-    
+    private GameManager gameManager;
     void Start(){
         startPos = transform.position;
+        gameManager = FindObjectOfType<GameManager>();
     }
     
     void Update()
@@ -30,13 +31,8 @@ public class ScorePowerUp : MonoBehaviour
     void Pickup(Collider player){
         Debug.Log("Power up has been picked up.");
 
-        int score = PlayerPrefs.GetInt("score", 0);
-
-        score+=50;
-
-        PlayerPrefs.SetInt("score", score);
-        PlayerPrefs.Save(); 
-        ScoreText.text = "SCORE: " + score.ToString();
+        gameManager.IncrementScore();
+        ScoreText.text = "SCORE: " + gameManager.score.ToString();
 
         gameObject.SetActive(false);
     }

@@ -9,11 +9,11 @@ public class EndMenu : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     public TextMeshProUGUI ScoreText;
+    private GameManager gameManager;
 
     void Start(){
-        int score = PlayerPrefs.GetInt("score", 0);
-
-        ScoreText.text = "TOTAL SCORE: " + score.ToString();
+        gameManager = FindObjectOfType<GameManager>();
+        ScoreText.text = "TOTAL SCORE: " + gameManager.score.ToString();
     }
 
     void OnTriggerEnter(Collider other){
