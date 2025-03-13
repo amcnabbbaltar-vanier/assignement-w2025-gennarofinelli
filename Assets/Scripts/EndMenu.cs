@@ -20,7 +20,7 @@ public class EndMenu : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            gameManager.LoadNextScene();
             gameManager.scorePicked = 0;
         }
     }
@@ -28,7 +28,7 @@ public class EndMenu : MonoBehaviour
     public void Restart(){
         SceneManager.LoadScene("Level1"); //Update scene with level 1
         gameManager.totalScore = 0;
+        gameManager.timer = 0;
         gameManager.Reset();
-        PlayerPrefs.SetFloat("timer", 0);
     }
 }

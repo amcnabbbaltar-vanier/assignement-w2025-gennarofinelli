@@ -17,7 +17,6 @@ public class DeathBarrier : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player") && !hasDealtDamage){
             hasDealtDamage = true;
-            Debug.Log("Player has fallen off the map!");
             gameManager.TakeDamage(2);
             gameManager.Reset();
             StartCoroutine(ReloadSceneAfterDelay(0.5f));

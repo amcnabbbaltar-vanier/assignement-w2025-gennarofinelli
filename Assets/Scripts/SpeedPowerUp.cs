@@ -6,9 +6,13 @@ public class SpeedPowerUp : MonoBehaviour
 {
     private float rotateSpeed = 50f;
     private Vector3 startPos;
+    private MeshRenderer[] meshes;
+    private Collider collider;
     
     void Start(){
         startPos = transform.position;
+        meshes = GetComponentsInChildren<MeshRenderer>();
+        collider = GetComponent<Collider>();
     }
     void Update()
     {
@@ -24,11 +28,13 @@ public class SpeedPowerUp : MonoBehaviour
     }
 
     IEnumerator Pickup(Collider player){
-        Debug.Log("Power up has been picked up.");
-
         player.GetComponent<CharacterMovement>().speedMultiplier *= 2;
 
-        gameObject.active = false;
+        foreach (MeshRenderer m in meshes)
+        {
+            m.enabled = false;
+        }
+        collider.enabled = false;
 
         yield return new WaitForSeconds(5.0f);
 

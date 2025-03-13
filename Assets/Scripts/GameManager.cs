@@ -47,13 +47,18 @@ public class GameManager : MonoBehaviour
     public void IncrementScore()
     {
         scorePicked+=1;
-        Debug.Log("Score: " + totalScore);
         totalScore += 50;
     }
     // Change the name of this Function 
     public void LoadNextScene()
     {
-       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 );
+       if(SceneManager.GetActiveScene().name != "EndScreen"){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 );
+       } else if (SceneManager.GetActiveScene().name == "EndScreen"){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 );
+
+       }
+       
     }
 
     public void TakeDamage(int damage)
@@ -79,7 +84,6 @@ public class GameManager : MonoBehaviour
         }
         scorePicked = 0;
         ScoreText.text = "SCORE: " + totalScore;
-        timer = 0;
         TimerText.text = "TIME: " + Mathf.FloorToInt(timer).ToString();
     }
 }

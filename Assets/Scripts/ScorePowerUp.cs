@@ -31,8 +31,6 @@ public class ScorePowerUp : MonoBehaviour
     }
 
     void Pickup(Collider player){
-        Debug.Log("Power up has been picked up.");
-
         gameManager.IncrementScore();
         ScoreText.text = "SCORE: " + gameManager.totalScore.ToString();
 

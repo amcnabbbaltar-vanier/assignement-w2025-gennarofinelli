@@ -29,8 +29,6 @@ public class FlipPowerUp : MonoBehaviour
     }
 
     IEnumerator Pickup(Collider player){
-        Debug.Log("Power up has been picked up.");
-
         player.GetComponent<CharacterMovement>().CanFlip = true;
 
         mesh.enabled = false;
@@ -38,7 +36,6 @@ public class FlipPowerUp : MonoBehaviour
 
         yield return new WaitForSeconds(30.0f);
 
-        Debug.Log("Flip off!");
         player.GetComponent<CharacterMovement>().CanFlip = false;
     }
 }
