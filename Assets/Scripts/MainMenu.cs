@@ -5,14 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    void Start(){
-        PlayerPrefs.SetInt("score", 0);
-        PlayerPrefs.SetFloat("timer", 0);
-    }
 
     public void Play()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level1");
     }
 
     public void Quit()

@@ -1723,7 +1723,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 24c70390c225b47019947b7e750fada6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1799,7 +1799,10 @@ MonoBehaviour:
   jumpForce: 5
   groundCheckDistance: 1.1
   speedMultiplier: 1
+  score: 0
+  health: 3
   groundSpeed: 0
+  CanFlip: 0
 --- !u!114 &7205333592777089430
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
+    private GameManager gameManager;
     public GameObject PauseMenuCanvas;   
     public GameObject ScoreCanvas;
 
     void Start()
     {
         Time.timeScale = 1f;
+        gameManager = GameManager.Instance;
     }
 
     void Update()
@@ -52,6 +54,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart(){
         PauseMenuCanvas.SetActive(false);
+        Play();
+        gameManager.Reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

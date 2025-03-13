@@ -6,19 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class DeathBarrier : MonoBehaviour
 {
-    private GameManager characterHealth;
+    private GameManager gameManager;
     private bool hasDealtDamage = false;
 
     void Start()
     {
-        characterHealth = GameManager.Instance;
+        gameManager = GameManager.Instance;
     }
 
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player") && !hasDealtDamage){
             hasDealtDamage = true;
             Debug.Log("Player has fallen off the map!");
-            characterHealth.TakeDamage(2);
+            gameManager.TakeDamage(2);
+            gameManager.Reset();
             StartCoroutine(ReloadSceneAfterDelay(0.5f));
             return;
         }
@@ -27,7 +28,7 @@ public class DeathBarrier : MonoBehaviour
     IEnumerator ReloadSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         hasDealtDamage = false;
     }
 }

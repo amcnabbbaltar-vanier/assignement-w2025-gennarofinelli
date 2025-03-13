@@ -7,10 +7,12 @@ using TMPro;
 public class ScorePowerUp : MonoBehaviour
 {
     private float rotateSpeed = 50f;
-    public TextMeshProUGUI ScoreText;
+    private TextMeshProUGUI ScoreText;
     private Vector3 startPos;
     private GameManager gameManager;
+
     void Start(){
+        ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         startPos = transform.position;
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -32,7 +34,7 @@ public class ScorePowerUp : MonoBehaviour
         Debug.Log("Power up has been picked up.");
 
         gameManager.IncrementScore();
-        ScoreText.text = "SCORE: " + gameManager.score.ToString();
+        ScoreText.text = "SCORE: " + gameManager.totalScore.ToString();
 
         gameObject.SetActive(false);
     }

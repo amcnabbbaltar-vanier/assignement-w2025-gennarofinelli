@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static GameManager Instance;
-    public int score = 0;
+    public int totalScore = 0;
+    public int scorePicked = 0;
+    private TextMeshProUGUI ScoreText;
     public int maxHealth = 3;
     public int currentHealth;
     public Slider healthBar;
+    public float timer = 0;
+    private TextMeshProUGUI TimerText;
 
     void Awake()
     {
@@ -19,6 +24,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+            TimerText = GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>();
             currentHealth = maxHealth;
             healthBar.maxValue = maxHealth;
             healthBar.value = GameManager.Instance.currentHealth;
@@ -30,11 +37,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        timer += Time.deltaTime;
+        TimerText.text = "TIME: " + Mathf.FloorToInt(timer).ToString();
+    }
+
     // Modify this function
     public void IncrementScore()
     {
-        score+=50;
-        Debug.Log("Score: " + score);
+        scorePicked+=1;
+        Debug.Log("Score: " + totalScore);
+        totalScore += 50;
     }
     // Change the name of this Function 
     public void LoadNextScene()
@@ -57,5 +71,15 @@ public class GameManager : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.value = currentHealth;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Reset(){
+        if(totalScore!=0){
+            totalScore -= 50 * scorePicked;
+        }
+        scorePicked = 0;
+        ScoreText.text = "SCORE: " + totalScore;
+        timer = 0;
+        TimerText.text = "TIME: " + Mathf.FloorToInt(timer).ToString();
     }
 }
