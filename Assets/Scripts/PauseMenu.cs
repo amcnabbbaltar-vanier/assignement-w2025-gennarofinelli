@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
     public GameObject PauseMenuCanvas;   
+    public GameObject ScoreCanvas;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     void Stop()
     {
         PauseMenuCanvas.SetActive(true);
+        ScoreCanvas.SetActive(false);
         Time.timeScale = 0f;
         Paused = true;
     }
@@ -38,6 +40,7 @@ public class PauseMenu : MonoBehaviour
     public void Play()
     {
         PauseMenuCanvas.SetActive(false);
+        ScoreCanvas.SetActive(true);
         Time.timeScale = 1f;
         Paused = false;
     }

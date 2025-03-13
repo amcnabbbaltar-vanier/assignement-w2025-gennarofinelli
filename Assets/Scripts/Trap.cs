@@ -6,11 +6,11 @@ using TMPro;
 
 public class Trap : MonoBehaviour
 {
-    private CharacterHealth health;
+    private GameManager health;
 
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            health = other.GetComponent<CharacterHealth>();
+            health = GameManager.Instance;
             health.TakeDamage(1);
             other.GetComponent<CharacterMovement>().health -= 1;
         }

@@ -13,7 +13,9 @@ public class EndMenu : MonoBehaviour
 
     void Start(){
         gameManager = FindObjectOfType<GameManager>();
-        ScoreText.text = "TOTAL SCORE: " + gameManager.score.ToString();
+        if(ScoreText != null){
+            ScoreText.text = "TOTAL SCORE: " + gameManager.score.ToString();
+        }
     }
 
     void OnTriggerEnter(Collider other){
