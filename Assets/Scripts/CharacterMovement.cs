@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     // ============================== Private Variables ==============================
     private Rigidbody rb; // Reference to the Rigidbody component
     private Transform cameraTransform; // Reference to the camera's transform
+    private AudioSource audio;
 
     // Input variables
     private float moveX; // Stores horizontal movement input (A/D or Left/Right Arrow)
@@ -102,6 +103,8 @@ public class CharacterMovement : MonoBehaviour
         // Lock and hide the cursor for better gameplay control
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
+        audio = GetComponent<AudioSource>();
     }
 
     // ============================== Input Handling ==============================
@@ -176,6 +179,7 @@ public class CharacterMovement : MonoBehaviour
                 jumpStatus = 0f;
             }
             else if (CanFlip && jumpStatus == 0f){
+                audio.Play();
                 rb.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
                 jumpRequest = false;
                 jumpStatus = 1f;

@@ -7,12 +7,14 @@ public class FlipPowerUp : MonoBehaviour
     private float rotateSpeed = 50f;
     private Vector3 startPos;
     private MeshRenderer mesh;
+    private ParticleSystem particle;
     private Collider collider;
 
     void Start(){
         startPos = transform.position;
         mesh = GetComponent<MeshRenderer>();
         collider = GetComponent<Collider>();
+        particle = GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -33,6 +35,7 @@ public class FlipPowerUp : MonoBehaviour
 
         mesh.enabled = false;
         collider.enabled = false;
+        particle.Play();
 
         yield return new WaitForSeconds(30.0f);
 

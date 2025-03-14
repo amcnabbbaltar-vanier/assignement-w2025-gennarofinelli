@@ -10,11 +10,17 @@ public class ScorePowerUp : MonoBehaviour
     private TextMeshProUGUI ScoreText;
     private Vector3 startPos;
     private GameManager gameManager;
+    private MeshRenderer[] meshes;
+    private ParticleSystem particle;
+    private Collider collider;
 
     void Start(){
         ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         startPos = transform.position;
         gameManager = FindObjectOfType<GameManager>();
+        meshes = GetComponentsInChildren<MeshRenderer>();
+        collider = GetComponent<Collider>();
+        particle = GetComponent<ParticleSystem>();
     }
     
     void Update()
@@ -34,6 +40,11 @@ public class ScorePowerUp : MonoBehaviour
         gameManager.IncrementScore();
         ScoreText.text = "SCORE: " + gameManager.totalScore.ToString();
 
-        gameObject.SetActive(false);
+        foreach (MeshRenderer m in meshes)
+        {
+            m.enabled = false;
+        }
+        collider.enabled = false;
+        particle.Play();
     }
 }

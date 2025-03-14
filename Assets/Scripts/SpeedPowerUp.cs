@@ -8,11 +8,13 @@ public class SpeedPowerUp : MonoBehaviour
     private Vector3 startPos;
     private MeshRenderer[] meshes;
     private Collider collider;
+    private ParticleSystem particle;
     
     void Start(){
         startPos = transform.position;
         meshes = GetComponentsInChildren<MeshRenderer>();
         collider = GetComponent<Collider>();
+        particle = GetComponent<ParticleSystem>();
     }
     void Update()
     {
@@ -35,6 +37,7 @@ public class SpeedPowerUp : MonoBehaviour
             m.enabled = false;
         }
         collider.enabled = false;
+        particle.Play();
 
         yield return new WaitForSeconds(5.0f);
 
